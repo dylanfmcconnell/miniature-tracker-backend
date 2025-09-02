@@ -1,0 +1,51 @@
+### Register
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "Bob",
+  "email": "bob@example.com",
+  "password": "supersecret"
+}
+
+### Login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "bob@example.com",
+  "password": "supersecret"
+}
+
+### (Paste token here from login)
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzU2Njg4Njc5LCJleHAiOjE3NTY2OTIyNzl9.FHXPHEG6e819YuvnW4rmklUIvsMm-bU9u9YRC6rD3XY
+
+### Create miniature
+POST http://localhost:5000/api/miniatures
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Necron Warrior",
+  "manufacturer": "Games Workshop",
+  "faction": "Necrons",
+  "scale": "28mm",
+  "status": "unpainted"
+}
+
+### List miniatures
+GET http://localhost:5000/api/miniatures
+Authorization: Bearer {{token}}
+
+### Update miniature
+PATCH http://localhost:5000/api/miniatures/3
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "primed"
+}
+
+### Delete miniature
+DELETE http://localhost:5000/api/miniatures/3
+Authorization: Bearer {{token}}
